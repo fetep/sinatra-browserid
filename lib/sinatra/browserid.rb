@@ -72,6 +72,8 @@ module Sinatra
       app.set :browserid_login_url, "/_browserid_login"
 
       app.get '/_browserid_login' do
+        # TODO(petef): render a page that initiates login without
+        # waiting for a user click.
         render_login_button
       end
 
