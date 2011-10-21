@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require "rubygems"
-
 require "json"
 require "net/https"
 require "sinatra/base"
