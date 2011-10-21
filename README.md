@@ -39,7 +39,8 @@ module MyApp < Sinatra::Base
 end
 ```
 
-See the rdoc for more details on the helper functions.
+See the rdoc for more details on the helper functions.  For a functioning
+example app, run <tt>rackup -p $PORT</tt> in the example directory.
 
 Available sinatra settings:
 

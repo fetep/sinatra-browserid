@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
-require "rubygems"
+$: << File.join(File.dirname(__FILE__), "..", "lib")
 
-require "json"
-require "net/https"
 require "sinatra/base"
 require "sinatra/browserid"
 
