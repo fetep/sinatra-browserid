@@ -1,0 +1,21 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Test App</h1>
+
+<p>
+<% if authorized? %>
+Hello, <%= authorized_email %> <a href="/logout">(logout)</a>
+<% else %>
+<%= render_login_button %>
+<% end %>
+</p>
+
+<p>
+see a <a href="/confidential">page that requires a login</a>.
+</p>
+
+</body>
+</html>
