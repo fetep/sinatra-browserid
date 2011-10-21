@@ -52,5 +52,7 @@ Available sinatra settings:
 
 
 Still TODO:
+
 * better error handling
 * local assertion verification (eliminate callback)
+
