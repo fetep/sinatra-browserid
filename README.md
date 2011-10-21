@@ -5,7 +5,8 @@ To learn more, see how it works [from a users perspective](https://browserid.org
 Note that BrowserID logins are not done from within a form on your site -- you provide a login button, and that will start up the BrowserID login flow (either via a pop-up or an in-browser widget).
 
 How to get started:
-<pre>
+
+```ruby
 require 'sinatra/base'
 require 'sinatra/browserid'
 
@@ -36,7 +37,7 @@ module MyApp < Sinatra::Base
         redirect '/'
     end
 end
-</pre>
+```
 
 See the rdoc for more details on the helper functions.
 
