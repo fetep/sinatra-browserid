@@ -78,7 +78,8 @@ module Sinatra
       app.post '/_browserid_assert' do
         # TODO(petef): do verification locally, without a callback
         audience = request.host_with_port
-        http = Net::HTTP.new("browserid.org", 443)
+        bid_uri = URI.parse(settings.browserid_url)
+        http = Net::HTTP.new(bid_uri.host, bid_uri.port)
         http.use_ssl = true
         data = {
           "assertion" => params[:assertion],
