@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "sinatra-browserid"
-  s.version = "0.2"
+  s.version = "0.3"
 
   s.authors = ["Pete Fritchman"]
   s.email = ["petef@databits.net"]
