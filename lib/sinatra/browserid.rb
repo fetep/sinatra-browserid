@@ -89,7 +89,7 @@ module Sinatra
         res, body = http.post("/verify", data_str)
 
         # TODO: check res is a 200
-        verify = JSON.parse(body) || nil
+        verify = JSON.parse(body) || nil rescue nil # Not sure why JSON parsing can fail with a nil value in 1.9.3
         if verify.nil?
           # JSON parsing error
           return
