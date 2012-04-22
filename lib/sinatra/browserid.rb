@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "json"
-require "net/https"
+require 'curb'
 require "sinatra/base"
 
 # This module provides an interface to verify a users email address
@@ -77,21 +77,28 @@ module Sinatra
 
       app.post '/_browserid_assert' do
         # TODO(petef): do verification locally, without a callback
-        audience = request.host_with_port
-        bid_uri = URI.parse(settings.browserid_url)
-        http = Net::HTTP.new(bid_uri.host, bid_uri.port)
-        http.use_ssl = true
         data = {
           "assertion" => params[:assertion],
-          "audience" => audience,
+          "audience" => request.host_with_port,
         }
         data_str = data.collect { |k, v| "#{k}=#{v}" }.join("&")
-        res, body = http.post("/verify", data_str)
+        body = ""
+        c = begin
+          Curl::Easy.http_post(settings.browserid_url + "/verify") do |curl|
+            curl.use_ssl = Curl::CURL_USESSL_ALL
+            curl.post_body = data_str
+            curl.on_body {|data| body << data; data.length}
+          end
+        rescue Exception => e
+          # Processing error
+          $stderr.puts "request was not successful. #{e.message}"
+          return
+        end
 
-        # TODO: check res is a 200
         verify = JSON.parse(body) || nil
         if verify.nil?
           # JSON parsing error
+          $stderr.puts "Invalid Response"
           return
         end
 
