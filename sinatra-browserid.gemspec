@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.summary = "Sinatra extension for user authentication with browserid.org"
 
   s.add_dependency("sinatra", ">= 1.1.0")
+  s.add_dependency("curb", ">= 0.8.0")
 end
