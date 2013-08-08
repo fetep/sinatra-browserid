@@ -88,10 +88,9 @@ module Sinatra
         data_str = data.collect { |k, v| "#{k}=#{v}" }.join("&")
         res = http.post("/verify", data_str)
 
-        # TODO: check res is a 200
-        verify = JSON.parse(res.body) || nil
-        if verify.nil?
-          # JSON parsing error
+        if res.code =~ /^2\d{2}$/
+          verify = ::JSON.parse(res.body)
+        else
           return
         end
 
